@@ -1,8 +1,8 @@
-import { consola } from 'consola'
-import type { ConsolaOptions } from 'consola'
+import pino from 'pino'
+import ecsFormat from '@elastic/ecs-pino-format'
 
-export const logger = consola
+export const logger = pino(ecsFormat())
 
-export function useLogger (tag?: string, options: Partial<ConsolaOptions> = {}) {
-  return tag ? logger.create(options).withTag(tag) : logger
+export function useLogger () {
+  return logger
 }
